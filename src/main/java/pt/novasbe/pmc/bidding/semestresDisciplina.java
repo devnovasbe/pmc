@@ -1,9 +1,9 @@
-package bidding;
+package pt.novasbe.pmc.bidding;
 
-import data.selectsSIGES;
-import pojo.ObjSIGESToBID;
+import pt.novasbe.pmc.data.selectsSIGES;
+import pt.novasbe.pmc.pojo.ObjSIGESToBID;
 import pt.novasbe.pmc.academicos;
-import utils.utils;
+import pt.novasbe.pmc.utils.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +52,11 @@ public class semestresDisciplina {
         }
 
         //**************************************************************************
-        // INJECTA A SUBSTITUIÇÂO DA ANUAL 15/12/2015
-        if(periodos.contains("A")){
+        // INJECTA A SUBSTITUIÇÂO DA ANUAL 15/12/2015 -> anulada 18/07/2022
+       /* if(periodos.contains("A")){
             periodos.clear();
             periodos.add("S1");
-        }
+        }*/
 
         //devolve os periodos em que a cadeira é oferecida
         // nova alteração 13-12-2016

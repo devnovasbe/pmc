@@ -3,12 +3,18 @@ package pt.novasbe.pmc;
 public interface academicos {
     // controlo - Lectivo Corrente
     //============ ATENCAO ==============================//
-    String AnoLectivo ="202122";
+    String AnoLectivo ="202223";
     String semestreLectivo ="S1";
     String trimestresLectivos ="'T1','T2'";
     String trimestresLectivosS2 ="'T3','T4'";
-    int anoLectivoInt = 202122;
+    int anoLectivoInt = 202223;
     int  idHeader = 244;
+
+    //** IMPORTANTE - VALIDAR SEMPRE - TRATAMENTO DE EXCEPÇÕES
+    int ttAnuais = 2;
+    int anual1 = 2260;
+    int anual2 = 2742;
+    String ectsAnuais = "2260;S1;3.5;S2;3.5#2742;S1;3.5;S2;0";
 
     //String tipoMassivo = "WPS";
     String tipoMassivo = "BIDDING";
@@ -19,15 +25,15 @@ public interface academicos {
     int idrequesHeader = 1; // MASSIVO - ATENçÃO
 
     String cursosEmBidding = "(8,14,15,16,22,35,36,37,38,39)";
-    String AnoLectivoBidding ="202122";
-    String semestreBidding = "(S1,'T1','T2')";
+    String AnoLectivoBidding ="202223";
+    String semestreBidding = "(S2,'T3','T4')";
     String MSTBidding = "(14,15,16,35,36,37,38,39)";
     String EXCHBidding = "8";
     String MIMBidding = "22";
     String planosMSTBidding = "(13,14)";
     String planosMIMBidding = "(2)";
     String planosEXCHBidding = "(4,5,7,8,9,10)";
-    //controle do Range da QUERY bidding service1 para a listagem dos alunos
+    //controle do Range da QUERY pt.novasbe.pmc.bidding service1 para a listagem dos alunos
     String dataIngressoMST ="01/01/2015";
     String dataIngressoEXH ="01/01/2019";
     String dataIngressoMIM ="01/01/2019";

@@ -1,12 +1,14 @@
-package data;
+package pt.novasbe.pmc.data;
 
 /*
  * selects ao Oracle-SIGES
  * @author rui.spranger
  */
 
-import pojo.ObjSIGESToBID;
-import utils.utils;
+import pt.novasbe.pmc.academicos;
+import pt.novasbe.pmc.pojo.ObjSIGESToBID;
+import pt.novasbe.pmc.pojo.ObjVal;
+import pt.novasbe.pmc.utils.utils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -410,8 +412,6 @@ public class selectsSIGES {
                 Object ctype = new Object();
                 String courseType= "NA";
 
-                //ctype = info.getString("HOME_PAGE");
-
                 ctype = tags[0].toUpperCase();
                 if(ctype != null ){
                     courseType = ctype.toString().trim();
@@ -445,6 +445,61 @@ public class selectsSIGES {
     }
 
 
+    //VALIDACOES
+
+    public List<ObjVal> devolveInfoGrupo  (String sql){
+
+        List<ObjVal> grps = new ArrayList<>();
+        try {
+            statement = getStatement();
+            ResultSet info = statement.executeQuery(sql);
+
+            while (info.next()){
+                ObjVal val  = new ObjVal();
+
+                val.setCd_grupo(info.getInt("CD_GRUPO"));
+                val.setCd_curso(info.getInt("CD_CURSO"));
+                val.setCd_plano(info.getInt("CD_PLANO"));
+                val.setDsGrupo(info.getString("DS_GRUPO"));
+                grps.add(val);
+
+
+            } // fim while
+        }   catch (Exception e) {
+        } finally {
+            close();
+        }
+
+        return grps ;
+    }
+
+    public List<ObjVal> devolveInfoMajor  (String sql){
+
+        List<ObjVal> grps = new ArrayList<>();
+        try {
+            statement = getStatement();
+            ResultSet info = statement.executeQuery(sql);
+
+            while (info.next()){
+                ObjVal val  = new ObjVal();
+
+                val.setCd_grupo(info.getInt("CD_GRUPO"));
+                val.setCd_curso(info.getInt("CD_CURSO"));
+                val.setCd_plano(info.getInt("CD_PLANO"));
+                val.setCd_ramo(info.getInt("CD_RAMO"));
+                val.setNm_ramo(info.getString("NM_RAMO"));
+
+                grps.add(val);
+
+
+            } // fim while
+        }   catch (Exception e) {
+        } finally {
+            close();
+        }
+
+        return grps ;
+    }
 
 
 

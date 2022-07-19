@@ -1,4 +1,4 @@
-package pojo;
+package pt.novasbe.pmc.pojo;
 
 public class ObjSIGESToBID {
     private int key = 0; // Controlo

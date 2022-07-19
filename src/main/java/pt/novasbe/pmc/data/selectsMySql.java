@@ -1,7 +1,7 @@
-package data;
+package pt.novasbe.pmc.data;
 
-import pojo.ObjSIGESToBID;
-import utils.utils;
+import pt.novasbe.pmc.pojo.ObjSIGESToBID;
+import pt.novasbe.pmc.utils.utils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

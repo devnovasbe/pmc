@@ -1,18 +1,18 @@
-package bidding;
+package pt.novasbe.pmc.bidding;
 
-import data.selectsMySql;
-import data.selectsSIGES;
-import data.updateMySql;
-import pojo.ObjPMC;
-import pojo.ObjSIGESToBID;
-import utils.utils;
+import pt.novasbe.pmc.data.selectsMySql;
+import pt.novasbe.pmc.data.selectsSIGES;
+import pt.novasbe.pmc.data.updateMySql;
+import pt.novasbe.pmc.pojo.ObjPMC;
+import pt.novasbe.pmc.pojo.ObjSIGESToBID;
+import pt.novasbe.pmc.utils.utils;
 
 public class mapToBidding {
 
     utils ut = new utils();
     updateMySql upd = new updateMySql();
     selectsMySql smy = new selectsMySql();
-    selectsSIGES scs = new selectsSIGES();
+
 
 
 
@@ -101,7 +101,7 @@ public class mapToBidding {
             idCrGrp = smy.devolveChaveInt(courseGroup, "ID");
 
             if(idCrGrp <= 0) {
-                System.out.println("DEBUG");
+                System.out.println("DEBUG - COURSE GROUP INEXISTENTE");
             }
 
         }

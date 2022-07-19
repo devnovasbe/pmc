@@ -1,4 +1,4 @@
-package data;
+package pt.novasbe.pmc.data;
 
 import java.sql.*;
 
@@ -33,12 +33,12 @@ public class ConnectionFactoryMySql {
        //return DriverManager.getConnection(url, "root", "trassa1");
 
         // Acesso à instancia de Bidding - Azure
-       //String url = "jdbc:mysql://10.100.1.5:3306/bidding";
-       //return DriverManager.getConnection(url, "bidding", "##BiddingAzure");
+       //String url = "jdbc:mysql://10.100.1.5:3306/pt.novasbe.pmc.bidding";
+       //return DriverManager.getConnection(url, "pt.novasbe.pmc.bidding", "##BiddingAzure");
 
         // Acesso à instancia Azure
-        //String url = "jdbc:mysql://10.100.1.5:3306/bidding?autoReconnect=true&useSSL=false";
-        //return DriverManager.getConnection(url, "bidding", "##BiddingAzure");
+        //String url = "jdbc:mysql://10.100.1.5:3306/pt.novasbe.pmc.bidding?autoReconnect=true&useSSL=false";
+        //return DriverManager.getConnection(url, "pt.novasbe.pmc.bidding", "##BiddingAzure");
 
     }
 

@@ -1,8 +1,8 @@
-package bidding;
+package pt.novasbe.pmc.bidding;
 
-import data.selectsMySql;
-import pojo.ObjSIGESToBID;
-import utils.utils;
+import pt.novasbe.pmc.data.selectsMySql;
+import pt.novasbe.pmc.pojo.ObjSIGESToBID;
+import pt.novasbe.pmc.utils.utils;
 
 public class validaIntegridadePMC {
 

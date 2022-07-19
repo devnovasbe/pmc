@@ -1,11 +1,14 @@
-package bidding;
+package pt.novasbe.pmc.bidding;
 
-import data.selectsMySql;
-import data.selectsSIGES;
-import data.updateMySql;
-import pojo.ObjSIGESToBID;
+import pt.novasbe.pmc.data.selectsMySql;
+import pt.novasbe.pmc.data.selectsSIGES;
+import pt.novasbe.pmc.data.updateMySql;
+import pt.novasbe.pmc.pojo.ObjSIGESToBID;
 import pt.novasbe.pmc.academicos;
-import utils.utils;
+import pt.novasbe.pmc.utils.utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PMCoperacoesInsercaoBDpivot {
 
@@ -20,6 +23,7 @@ public class PMCoperacoesInsercaoBDpivot {
     public boolean insereObjectoInfoPla(ObjSIGESToBID objPla){
 
         boolean flag = false;
+        boolean anual = AnualExcepcao(objPla);
         grp = ut.temGrupo(objPla); // tem grupo ?
 
 
@@ -34,12 +38,7 @@ public class PMCoperacoesInsercaoBDpivot {
         // Nome do Grupo
         objPla.setDsGrupo(scs.nmGrupo(objPla));
 
-
-        // ECTS da cadeira
-        objPla.setEcts(scs.devolveECTS(objPla));
-
-
-        //specs bidding
+        //specs pt.novasbe.pmc.bidding
         if(grp){
             objPla.setCdCourseBid(objPla.getCdDiscOp());
         } else {
@@ -47,9 +46,18 @@ public class PMCoperacoesInsercaoBDpivot {
         }
         objPla.setRamoBid(objPla.getCdRamo());
 
+
+        // 18/07/2022** Excepções se ANUAL
+        // ECTS da cadeira
         //Semestres - Determinar os semestres em que a cadeira é oferecida
-        String semestres = sem.devolveSemestres(objPla);
-        objPla.setSemestres(semestres);
+        if(!anual) {
+            objPla.setEcts(scs.devolveECTS(objPla));
+            String semestres = sem.devolveSemestres(objPla);
+            objPla.setSemestres(semestres);
+        } else {
+            //Se for anual
+            objPla = devolveSemestreECTSAnual(objPla);
+        }
 
 
         boolean ext = existe(objPla);
@@ -168,6 +176,51 @@ public class PMCoperacoesInsercaoBDpivot {
 
         return flag;
     }
+
+
+    //VAlida se a Cadeira é uma Anual com tratamento de Execpção
+    private boolean AnualExcepcao(ObjSIGESToBID objPla){
+
+        boolean flag =false;
+        if(objPla.getCdDiscip() == academicos.anual1 || objPla.getCdDiscip()==academicos.anual2
+                || objPla.getCdDiscOp() == academicos.anual1 || objPla.getCdDiscOp()==academicos.anual2 ) {
+           flag = true;
+        }
+      return flag;
+    }
+
+    private ObjSIGESToBID devolveSemestreECTSAnual (ObjSIGESToBID objPla){
+
+        //String ectsAnuais = "2260;S1;3.5;S2;3.5#2742;S1;3.5;S2;0";
+        String[] cadeirasAnuais = academicos.ectsAnuais.split("#");
+        int indexMax = academicos.ttAnuais;
+
+        //REVER PARA O CASO DE CICLO DINAMICO - Por agora MARTELADA nos indices
+        if(objPla.getCdDiscip() == academicos.anual1 || objPla.getCdDiscOp() == academicos.anual1){
+
+            //indice 0 - 2260
+            String linha = (String) cadeirasAnuais[0];
+            String[] infoCad = linha.split(";");
+            objPla.setEcts(3.5);
+            objPla.setSemestres("S1,S2");
+
+        }
+
+        if(objPla.getCdDiscip()==academicos.anual2 || objPla.getCdDiscOp() == academicos.anual2){
+            //indice 0 - 2742
+            String linha = (String) cadeirasAnuais[1];
+            String[] infoCad = linha.split(";");
+            objPla.setEcts(3.5);
+            objPla.setSemestres("S1,S2");
+
+        }
+
+
+
+        return objPla;
+    }
+
+
 
 //======================================================================================================================//
 

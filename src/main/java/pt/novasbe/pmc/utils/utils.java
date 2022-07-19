@@ -1,6 +1,6 @@
-package utils;
+package pt.novasbe.pmc.utils;
 
-import pojo.ObjSIGESToBID;
+import pt.novasbe.pmc.pojo.ObjSIGESToBID;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package data;
+package pt.novasbe.pmc.data;
 
 import java.sql.*;
 
